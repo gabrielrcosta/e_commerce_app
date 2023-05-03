@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecommerceapp.databinding.CategoryListBinding
 
-class CategoryAdapter(private val categoryList: MutableList<CategoryProduct>, private val context: Context):
+class CategoryAdapter(private val categoryList: List<CategoryProduct>, private val context: Context):
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(context)
@@ -23,18 +23,15 @@ class CategoryAdapter(private val categoryList: MutableList<CategoryProduct>, pr
         val category = categoryList[position]
         if (holder is TypeItem) {
             holder.binding(category)
-            holder.itemView.setOnClickListener {
+            /*holder.itemView.setOnClickListener {
                 TODO()
-            }
+            }*/
         }
     }
-
-}
-
-class TypeItem(private val recyclerItem: CategoryListBinding):
-    RecyclerView.ViewHolder(recyclerItem.root) {
+    inner class TypeItem(private val recyclerItem: CategoryListBinding):
+        RecyclerView.ViewHolder(recyclerItem.root) {
         fun binding(category: CategoryProduct) {
             recyclerItem.categoryText.text = category.electronics
         }
     }
-
+}
