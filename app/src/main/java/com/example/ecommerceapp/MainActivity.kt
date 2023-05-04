@@ -14,15 +14,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initUI()
+        login()
     }
 
     private fun initUI() {
-        binding.signIn.setOnClickListener{
-            val intent = Intent(this@MainActivity, ProductListActivity::class.java)
-            intent.putExtra("login", binding.loginText.toString())
-            startActivity(intent)
-        }
-
         binding.forgotPassword.setOnClickListener {
             val intent = Intent(this@MainActivity, ProductListActivity::class.java)
             startActivity(intent)
@@ -32,5 +27,28 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, ProductListActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun login() {
+        binding.apply {
+            signIn.setOnClickListener{
+                emailValidation().forEach { email ->
+                    if (!loginText.text.contains(email)) {
+                        loginText.error = "Invalid email"
+                        if (passwordText.text.isNullOrBlank()) {
+                            passwordText.error = "Invalid password."
+                        }
+                        else {
+                            startActivity(Intent(this@MainActivity, ProductListActivity::class.java))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    private fun emailValidation(): MutableList<String> {
+        val emailList = mutableListOf<String>()
+        emailList.add("gabriel@gmail.com")
+        return emailList
     }
 }
