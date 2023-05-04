@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ecommerceapp.databinding.CategoryListBinding
 import com.squareup.picasso.Picasso
 
-class CategoryAdapter(private val categoryList: List<CategoryProduct>, private val context: Context):
-        RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CategoryAdapter(
+    private val categoryList: List<CategoryProduct>,
+    private val context: Context,
+    private val listener: Click
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(context)
         val recyclerItemCategoryBinding: CategoryListBinding =
@@ -24,9 +27,9 @@ class CategoryAdapter(private val categoryList: List<CategoryProduct>, private v
         val category = categoryList[position]
         if (holder is TypeItem) {
             holder.binding(category)
-            /*holder.itemView.setOnClickListener {
-                TODO()
-            }*/
+            holder.itemView.setOnClickListener {
+                listener.onClick(category.name)
+            }
         }
     }
     inner class TypeItem(private val recyclerItem: CategoryListBinding):
@@ -36,4 +39,7 @@ class CategoryAdapter(private val categoryList: List<CategoryProduct>, private v
             Picasso.get().load(category.image).into(recyclerItem.categoryImage)
         }
     }
+}
+interface Click {
+    fun onClick(name:String)
 }
