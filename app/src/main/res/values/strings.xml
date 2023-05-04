@@ -16,6 +16,8 @@
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up">Sign Up</string>
     <string name="image">image</string>
-    <string name="category">CATEGORY</string>
+    <string name="category">CATEGORIES</string>
     <string name="password">password</string>
+    <string name="description">Description</string>
+    <string name="product_detail">Product Detail</string>
 </resources>
