@@ -13,8 +13,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        initUI()
         login()
+        initUI()
     }
 
     private fun initUI() {
@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, ProductListActivity::class.java)
             startActivity(intent)
         }
-
         binding.signUp.setOnClickListener{
             val intent = Intent(this@MainActivity, ProductListActivity::class.java)
             startActivity(intent)
@@ -38,9 +37,8 @@ class MainActivity : AppCompatActivity() {
                         if (passwordText.text.isNullOrBlank()) {
                             passwordText.error = "Invalid password."
                         }
-                        else {
-                            startActivity(Intent(this@MainActivity, ProductListActivity::class.java))
-                        }
+                    } else {
+                        startActivity(Intent(this@MainActivity, ProductListActivity::class.java))
                     }
                 }
             }
