@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ecommerceapp.databinding.CategoryListBinding
+import com.squareup.picasso.Picasso
 
 class CategoryAdapter(private val categoryList: List<CategoryProduct>, private val context: Context):
         RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -31,7 +32,8 @@ class CategoryAdapter(private val categoryList: List<CategoryProduct>, private v
     inner class TypeItem(private val recyclerItem: CategoryListBinding):
         RecyclerView.ViewHolder(recyclerItem.root) {
         fun binding(category: CategoryProduct) {
-            recyclerItem.categoryText.text = category.electronics
+            recyclerItem.categoryText.text = category.name
+            Picasso.get().load(category.image).into(recyclerItem.categoryImage)
         }
     }
 }
